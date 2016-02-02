@@ -7,16 +7,19 @@ module FileNameReader =
     open System.IO
     open Rop
     open FileValidation
-       
-    let readNamesFromFile filename =
-        let names = File.ReadAllLines filename
-        if names = null || names.Length < 1 then Result.Failure { Message = "The data file must contain at least one name" }
-        else Result.Success (Array.toList names)
+     
+    let private toValidList (names: string[]) = 
+      if names = null || names.Length < 1 then Result.Failure { Message = "The data file must contain at least one name" }
+      else Result.Success (Array.toList names)
+
+    let private readNamesFromFile filename =
+        File.ReadAllLines filename
+        |> toValidList                
 
     let readNames = 
         validateFilename
         >>= validateFileExists
-        >>= readNamesFromFile
+        >>= readNamesFromFile        
         
 module InMemoryNameReader = 
     let readNames = Rop.Result.Success [ "Rick"; "John"; "Billy" ]
