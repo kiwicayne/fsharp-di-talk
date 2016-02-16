@@ -11,7 +11,7 @@
   /// </summary>
   type ConsoleMessageSender (filename) =
     do 
-      if filename = null then raise <| ArgumentNullException("The filename cannot be null")
+      if filename |> isNull then raise <| ArgumentNullException("The filename cannot be null")
 
     /// <summary>
     ///   Send a message to each person loaded from the name file
@@ -19,7 +19,7 @@
     /// <param name="formattedMessage"></param>
     /// <exception cref="InvalidDataException">The data file must contain at least one line</exception>
     /// <exception cref="FileNotFoundException">The file could not be found</exception>
-    member this.send formattedMessage =
+    member this.Send formattedMessage =
       if not (File.Exists filename) then raise <| FileNotFoundException("The file could not be found")
 
       let names = File.ReadAllLines filename

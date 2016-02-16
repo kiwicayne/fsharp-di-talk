@@ -1,4 +1,4 @@
-We will introduce F#, see how F# doesn't require as much ceremony as C#.  How dependency injection can be done in F#, and why it isn't as much of an issue as it is in C#.
+We will introduce F#, see how F# doesn't require as much ceremony as C#.  How dependency injection can be achieved in F#, and why it isn't as much of an issue as it is in C#.
 
 Start off porting Step 1 from C# to F#, then make the code more functional and finally look at DI.  
 
@@ -28,3 +28,6 @@ OOP is about encapsulating functionality and data together into a type.
 Functional still has encapsulation (modules/can have functions on a type) but generally keeps the types and functions that operate on those types seperate unless they are very tighly coupled and changing one always requires changing the other (e.g. toJson).
 
 F# is a hybrid.  Very good at OOP or Functional.  Use the best of both worlds.
+
+http://fsharpforfunandprofit.com/
+http://fsharp.org/

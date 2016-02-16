@@ -1,0 +1,7 @@
+An Introduction to F# and functional-first programming
+
+F# is a mature, open source, cross-platform, functional-first programming language. It empowers users and organizations to tackle complex computing problems with simple, maintainable and robust code.
+
+This talk will provide a gentle introduction to F# and functional-first programming by porting a simple C# application to F#, while introducing F# and functional programming along the way.  No prior knowledge of F# or functional programming is required.  The application will be translated into object orientated F#, and then converted into a functional-first implementation.  A design pattern based on Railway Orientated Programming (ROP) will be introduced to simplify the application and demonstrate the power of composition and error handling without exceptions.
+
+Finally a real-world F# web application will be demonstrated using Asp.Net MVC (including C# Razor views) and WebApi. This will demonstrated that F# can (and should) be used to develop applications today!
