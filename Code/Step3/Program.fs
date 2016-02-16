@@ -13,19 +13,21 @@ module Program =
   let main argv = 
     let filePath = Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..\names.txt")
    
-    let nameReader() = FileNameReader.readNames filePath
-    let messageWriter = ConsoleWriter.write "Hello %s"
-    MessageSender.sendAll nameReader messageWriter
+    // The use of () just means nameReader is a function that takes a single parameter of type unit
+    // otherwise it would execute immediately.  Could also write it as a lambda.
+    let readNamesFromFile() = FileNameReader.readNames filePath
+    let writeMessageToConsole = ConsoleWriter.write "Hello %s"
+    MessageSender.sendAll readNamesFromFile writeMessageToConsole
 
-    let memoryReader() = InMemoryNameReader.readNames
-    let debugWriter = DebugWriter.write "Hello from debug %s"
-    MessageSender.sendAll memoryReader debugWriter
+    let readNamesFromMemory() = InMemoryNameReader.readNames
+    let writeMessageToDebugger = DebugWriter.write "Hello from debug %s"
+    MessageSender.sendAll readNamesFromMemory writeMessageToDebugger
 
     // Compiler doesn't allow null's so no need to test for them in code
-    //MessageSender.sendAll null null
+    // MessageSender.sendAll null null
 
     // I wouldn't bother with the MessageSender module unless there was a lot of extra logic, so 
     // in reality you would just have NameReaders and Writers modules and the following code.
-    nameReader() |> Array.iter messageWriter 
+    readNamesFromFile() |> Array.iter writeMessageToConsole 
 
     exit()   
