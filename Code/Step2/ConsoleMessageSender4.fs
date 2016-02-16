@@ -12,7 +12,7 @@ module NameReader4 =
   open System.IO;
 
   let readNames filename =
-    if filename = null then raise <| ArgumentNullException("The filename cannot be null")
+    if filename |> isNull then raise <| ArgumentNullException("The filename cannot be null")
     if not (File.Exists filename) then raise <| FileNotFoundException("The file could not be found")
 
     let names = File.ReadAllLines filename

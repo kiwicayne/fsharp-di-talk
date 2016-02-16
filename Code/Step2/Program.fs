@@ -22,18 +22,18 @@ module Program =
     ConsoleMessageSender2.send filePath "Hello %s"    
 
   let runExample3 filePath =  
+    // A lambda function that when called reads names from a file into an array
     let getNames = (fun _ -> NameReader3.readNames filePath)
+    // send calls the getNames function and for each name say hello
     ConsoleMessageSender3.send getNames "Hello %s"  
     
   // A more functional solution is to pipe functions together, rather than pass in a function as a parameter
   // This requires the name being the last parameter on the send function
-  let runExample4 filePath =  
-    NameReader4.readNames filePath
-    |> Array.iter (ConsoleMessageSender4.send "Hello %s") // what happens if you change to %d?
-
   // We can use partial application on the send function, makes the code very readable...
-  let runExample4Again filePath =
-    let sendMessage = ConsoleMessageSender4.send "Hello %s"
+  let runExample4 filePath =
+    // partial application
+    let sendMessage = ConsoleMessageSender4.send "Hello %s" // what happens if you change to %d?
+
     NameReader4.readNames filePath
     |> Array.iter sendMessage
 
@@ -59,9 +59,16 @@ module Program =
     runExample4 filePath
 
     printfn "Running example 4 again..."
-    // Using example 4 with parameterized send message, partial application.  Looks like dependency injection...
-    let runExample4 = runExample4WithFunc filePath // a function that takes a sender, filePath dependency already applied, could be done in a bootstrapper
-    let sendMessageToConsole = ConsoleMessageSender4.send "Hello %s" // We could user any "sender" that has the type (string -> unit)
+    
+    // DEPENDENCY INJECTION EXAMPLE!!!
+        
+    // Create a new function that takes a sender function, with the filePath dependency already applied
+    // this could be done in a bootstrapper...
+    let runExample4 = runExample4WithFunc filePath 
+    
+    // We could user any "sender" that has the type (string -> unit)
+    // also could be done in a bootstrapper...
+    let sendMessageToConsole = ConsoleMessageSender4.send "Hello %s" 
     
     runExample4 sendMessageToConsole
     

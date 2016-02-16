@@ -8,7 +8,7 @@ module ConsoleMessageSender =
   // This removes the class and moves the logic into a simple function
   // encapsulated within a module
   let send filename formattedMessage =
-    if filename = null then raise <| ArgumentNullException("The filename cannot be null")
+    if filename |> isNull then raise <| ArgumentNullException("The filename cannot be null")
     if not (File.Exists filename) then raise <| FileNotFoundException("The file could not be found")
 
     let names = File.ReadAllLines filename
