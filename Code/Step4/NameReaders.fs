@@ -1,7 +1,5 @@
 ﻿namespace Step4
 
-type PersonNames = string []
-
 module FileNameReader = 
     open System
     open System.IO
@@ -9,13 +7,14 @@ module FileNameReader =
     open FileValidation
      
     let private toValidList (names: string[]) = 
-      if names = null || names.Length < 1 then Result.Failure { Message = "The data file must contain at least one name" }
+      if isNull names || names.Length < 1 then Result.Failure { Message = "The data file must contain at least one name" }
       else Result.Success (Array.toList names)
 
     let private readNamesFromFile filename =
         File.ReadAllLines filename
         |> toValidList                
 
+    // Very easy to understand!  No cyclomatic complexity.
     let readNames = 
         validateFilename
         >>= validateFileExists

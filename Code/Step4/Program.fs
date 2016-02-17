@@ -14,7 +14,7 @@ module Program =
     let filePath = Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..\names.txt")
    
     let sendMessageToPerson = ConsoleWriter.write "Hello %s"
-    let sendMessageToPeople = 
+    let sendMessageToPeople =      
       FileNameReader.readNames 
       >>= iter sendMessageToPerson
 
