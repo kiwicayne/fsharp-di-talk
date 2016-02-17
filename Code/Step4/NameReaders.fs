@@ -14,7 +14,7 @@ module FileNameReader =
         File.ReadAllLines filename
         |> toValidList                
 
-    // Very easy to understand!  No cyclomatic complexity.
+    // Very easy to understand!  No cyclomatic complexity.  No try/catch logic or if statements.
     let readNames = 
         validateFilename
         >>= validateFileExists
