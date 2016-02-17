@@ -1,2 +1,2 @@
-# ninject-talk
-Ninject presentation for .Net user group in Tucson
+# fsharp-di-talk
+Fsharp presentation for .Net user group in Tucson
